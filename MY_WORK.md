@@ -32,11 +32,11 @@
 
 | Field | Your Answer |
 |-------|-------------|
-| **Full Name** | [Write your full name here] |
-| **Student ID** | [Write your student ID here] |
-| **University Email** | [yourid]@std.psau.edu.sa |
-| **GitHub Username** | [your-github-username] |
-| **Repository Link** | [Paste your repository link here] |
+| **Full Name** | Hessa Almujali |
+| **Student ID** | 445052209 |
+| **University Email** | 445052209@std.psau.edu.sa |
+| **GitHub Username** | hessa-4 |
+| **Repository Link** |https://github.com/hessa-4/OS-Assignment3-Hessa-Almujali|
  
 ---
 
@@ -132,68 +132,84 @@
 
 ## Your Development Log
 
-### Entry 1 - [Date and Time]
-**What I did**:
+### Entry 1 - [November 05, 2026, 05:07 PM]
+**What I did**: Forked the orignal project . Set my student ID and ran the project for the first time.
 
 **Details**:
+- I forked the project from the orignal repository , 
+- I updated the studedID varaible to match my ID
+- I run the program and took record of the output.
+- Committed and pushed: `Set my student ID: 445052209`
 
-**Challenges**:
+**Challenges**:No challenge indoing the task it self but when I ran the project the starter showed a thread-state error and did not finish all processes..
 
-**Solution**:
+**Solution**:That is expected beacuse there was no solution in the code to solve the race problem in the coming features I fixed that problem by solving the race condition.
 
-**Time spent**:
+**Time spent**:15 minutes
 
 ---
 
-### Entry 2 - [Date and Time]
-**What I did**:
+### Entry 2 - [November 05, 2026, 05:39 PM]
+**What I did**:Worked on the ready queue race problem.
 
 **Details**:
+- Applied queueLock to the queue operations
+- Run the project again and took a record of the output.
+- Committed and pushed:`Feature 1: Lock queue reads and updates.`
 
-**Challenges**:
+**Challenges**Multiple CPUs were using one list and map, which could lead to an invalid queue action beacuse of race condition.
 
-**Solution**:
+**Solution**:Put the queue operations inside lock() and finally blocks, so that only one process could read and update the queue at once and the rest need to wait.
 
-**Time spent**:
+**Time spent**:25 minutes
 
 ---
 
-### Entry 3 - [Date and Time]
-**What I did**:
+### Entry 3 - [November 06, 2026, 06:29 PM]
+**What I did**:Protected the totals.
 
 **Details**:
+- Used statsLock when updating or reading the switch count, completed count, and service time.
+- Run the project again and took a record of the output.
+- Commit: Feature 2:` Guard all shared statistics.`
 
-**Challenges**:
+**Challenges**:The shared counters could be changed by different CPUs during execution and beacuse there is a race condition the variables could end in a wrong number.
 
-**Solution**:
+**Solution**:Protected each read and change with the same mutex.
 
-**Time spent**:
+**Time spent**:30 minutes
 
 ---
 
-### Entry 4 - [Date and Time]
-**What I did**:
+### Entry 4 - [November 07, 2026, 04:08 PM]
+**What I did**:Added semaphore waiting and exit.
 
 **Details**:
+- Used readyCount for queued processes and wakeWaitingCPUs() when all work is done
+- Run the project again and took a record of the output.
+- Commit: Feature 3: `Use semaphore and safe shutdown.`  
 
-**Challenges**:
+**Challenges**: A CPU could stay blocked after the final process if no more permits were given.
+**Solution**: Added the final release so blocked workers can wake and exit.
 
-**Solution**:
-
-**Time spent**:
+**Time spent**:40 minutes
 
 ---
 
-### Entry 5 - [Date and Time]
+### Entry 5 - [November 09, 2026, 03:10 PM]
 **What I did**:
-
+I updated the `MY_WORK.md` file by filling the entry and answring the Reflection and technical questions.
 **Details**:
+- I reviwed the code and the final run the automatic verfication shows no error or uncomplete process all output was green.
+- I filled the entry from my commit history.
+- I answered the reflection from my knowledge lerened from the project.
 
 **Challenges**:
+There may be a chance that my program behave correctly in a run and then behave incorrectly in other runs.
 
-**Solution**:
+**Solution**: I ran the program several times and each time the verfication output was correct.
 
-**Time spent**:
+**Time spent**: 2 hours.
 
 ---
 
@@ -214,13 +230,16 @@
 
 > 💡 **TIP:** Fill this in **last**, after all entries are written.
 
-**Total time spent on assignment**: [X hours]
+**Total time spent on assignment**: 4  hours
 
 **Most challenging part**:
+The last CPU wake-up when the program is finishing.
 
 **Most interesting learning**:
+The difference between waiting for a job and waiting forever & the importance of solving race conditions for correct results.
 
 **What I would do differently next time**:
+ I would start by learning and revising all conceptes before jumping into the code directly so I can understand better.
 
 ---
 
@@ -240,7 +259,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+This task helped me understand why a program with several CPU threads needs rules for shared data. In the first output, the simulation did not complete all the processes. A queue lock stops two CPUs from changing the queue at the same time. I used another lock for the counters so their totals stay correct. The semaphore controls when a CPU can take the next process. I also learned that waiting threads need a way to wake up when the whole simulation ends.
 
 ## Question 2: What was the most challenging part of this assignment?
 
@@ -248,7 +267,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+For me, the last part of the CPU loop needed the most care. A CPU can wait on acquire() when the ready queue has nothing in it. That is useful during normal execution, but the program has to stop after all processes are finished. Without extra permits at the end, a waiting CPU might never return. The saved starter run also had a watchdog warning, so ending normally was important. The wakeWaitingCPUs() method solves that final waiting problem.
 
 ## Question 3: How did you overcome the challenges you faced?
 
@@ -256,7 +275,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+I checked the wrong values from the first output before reviewing the shared queue. My original run completed 17 processes, although it expected 19. I kept the RaceWindow and verification sections unchanged. I added the queue lock first and then the lock used by the statistics methods. After that, I replaced the repeated queue checking with semaphore permits. The final run reached 19 completed processes, and the busy-waiting count was zero.
 
 ## Question 4: Where can synchronization concepts be applied in real-world applications?
 
@@ -264,7 +283,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+A banking application is an example of shared data that must be protected. Two payment requests might read the same balance before either one changes it. If both continue, the saved balance can be wrong. A mutex can make each balance update happen without another update in the middle. A task service also needs workers to wait for new requests. A semaphore can control that waiting, just as it does in this assignment.
 
 ### Optional: What would you like to learn more about?
 
@@ -298,20 +317,31 @@
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+The original run recorded 34 context switches when 39 were expected and 17 completed processes instead of 19; it also showed IllegalThreadStateException and a watchdog message. A counter can lose a change if CPU-1 reads 10, CPU-2 reads 10 during RaceWindow.pause(), and each CPU writes 11 rather than producing 12. This is a race condition because the result depends on which thread reaches the shared value first. The same overlap is possible with normal thread scheduling even when the added pause is removed, so it may not appear in every run.
 
 Verification block of the **original starter**:
 ```
-[Paste the verification block (or the exception/watchdog message) of the starter here]
+
+═══ VERIFICATION (expected values are computed from YOUR seed) ═══
+Context switches (quanta executed)     expected 39       observed 34       ? MISMATCH
+Completed processes                    expected 19       observed 17       ? MISMATCH
+Total service time (ms)                expected 114435   observed 100961   ? MISMATCH
+Busy-waiting polls (must be 0)         expected 0        observed 499      ? MISMATCH
+
 ```
 
 Verification block of **my final version**:
 ```
-[Paste the verification block of your final version here (all lines ✔)]
+═══ VERIFICATION (expected values are computed from YOUR seed) ═══
+Context switches (quanta executed)     expected 39       observed 39       ?
+Completed processes                    expected 19       observed 19       ?
+Total service time (ms)                expected 114435   observed 114435   ?
+Busy-waiting polls (must be 0)         expected 0        observed 0        ?
 ```
 
 **Explanation of the timeline:**
-[Explain the lost update step by step.]
+The read-and-write example above shows how a race could happen. The recorded results are the numbers in the verification block.
+Without the final release, some CPUs could remain blocked in acquire() and the simulation might not terminate.
 
 ## Question 2: Critical Sections and Lock Granularity
 
@@ -321,12 +351,15 @@ Verification block of **my final version**:
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+The queue operations add(), poll(), processOf(), and snapshot() use queueLock to protect the shared collections. My statistics methods use statsLock for both writes and getters; I stayed with one lock for the three values, even though this can make separate counters wait on each other. Keeping a different lock for the queue means the statistics and queue do not all compete for one mutex. The finally blocks free the locks for other CPUs, providing mutual exclusion and progress, but the default ReentrantLock is non-fair and does not guarantee bounded waiting.
 
 | Critical section (variable / method) | Lock used | Why it needs protection |
 |---|---|---|
-| [e.g., `ReadyQueue.poll()`] | [lock name] | [reason] |
-| [...] | [...] | [...] |
+| Queue insertion and removal | `queueLock` | The list and map must stay consistent. |
+| Reading the queue (`processOf`, `snapshot`) | `queueLock` | The values should not change halfway through a read. |
+| Switch counter and its getter | `statsLock` | One CPU must finish the count change first. |
+| Finished-process counter and getter | `statsLock` | Prevent a missing completion. |
+| Service-time total and getter | `statsLock` | Avoid changes to the total at the same time. |
 
 ## Question 3: Busy Waiting vs Semaphore
 
@@ -336,7 +369,7 @@ Verification block of **my final version**:
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+The starter had 499 busy-waiting polls and a watchdog warning; after Feature 2, it still had 21 polls. readyCount is created with 0 permits because the ready queue has not received work yet, and the 19 starting add() calls raise it to 19 before CPUs begin. The workers use acquire() to block instead of polling, while each new queued process gives a permit through release(). When the final process completes, wakeWaitingCPUs() releases permits for waiting CPUs to check the finished count and return.
 
 ## Question 4: Classical Problems and Deadlock
 
@@ -347,24 +380,23 @@ Verification block of **my final version**:
 **Your Answer:** *(3-5 sentences)*
 
 **Classical problem and roles**:
-[Name the problem; who is the producer, who is the consumer?]
+The program is similar to the producer-consumer problem. The main thread adds the first processes to the ready queue, and the CPUs are consumers that take them for execution. CPUs can also act as producers when they return unfinished processes to the queue
 
 **Semaphores for a bounded queue (name and initial value)**:
-[Name the three semaphores and their initial values.]
+For a queue with `K` spaces, the semaphores start as `empty = K, full = 0,` and `mutex = 1`.
 
 **Deadlock scenario and prevention**:
-[Describe the scenario and the necessary condition you would break.]
+Deadlock could happen with two locks when CPU-1 holds the queue lock and waits for the statistics lock while CPU-2 holds the statistics lock and waits for the queue lock. I would always acquire those locks in the same order, breaking the circular-wait condition.
 
 ## Summary
-
 **Key concepts I understood through these questions:**
-1.
-2.
-3.
+1. Protecting the ready queue
+2. Checking correct final statistics
+3. Waking blocked CPUs at shutdown
 
 **Concepts I need to study more:**
-1.
-2.
+1. Mutex
+2. Locks
 
 ---
 
@@ -373,37 +405,37 @@ Verification block of **my final version**:
 > ⚠️ **WARNING:** Go through every line. Blackboard does not accept submissions after the deadline, which is **November 14, 2026**.
 
 **Repository**
-- [ ] Repository is **PUBLIC** (Settings → Danger Zone → Visibility)
-- [ ] Repository is renamed to `OS-Assignment3-YourFirstName-YourLastName`
-- [ ] GitHub account uses the university email (`@std.psau.edu.sa`)
+- [x] Repository is **PUBLIC** (Settings → Danger Zone → Visibility)
+- [x] Repository is renamed to `OS-Assignment3-YourFirstName-YourLastName`
+- [x] GitHub account uses the university email (`@std.psau.edu.sa`)
 
 **Code**
-- [ ] Student ID is set in `SchedulerSimulationSync.java` (line 304)
-- [ ] My code is based **only** on the starter of this repository (nothing copied from previous assignments)
-- [ ] Code compiles and runs with no errors, and terminates by itself (no `⛔ WATCHDOG`)
-- [ ] Feature 1 (ready queue lock), Feature 2 (statistics locks) and Feature 3 (semaphore, no busy waiting) all work
-- [ ] **The four verification lines are ✔ in 5 consecutive runs**
-- [ ] Every lock is released in a `finally` block
-- [ ] `RaceWindow`, `Config`, the verification block and the watchdog are **unchanged**
-- [ ] Each feature has clear comments
+- [x] Student ID is set in `SchedulerSimulationSync.java` (line 304)
+- [x] My code is based **only** on the starter of this repository (nothing copied from previous assignments)
+- [x] Code compiles and runs with no errors, and terminates by itself (no `⛔ WATCHDOG`)
+- [x] Feature 1 (ready queue lock), Feature 2 (statistics locks) and Feature 3 (semaphore, no busy waiting) all work
+- [x] **The four verification lines are ✔ in 5 consecutive runs**
+- [x] Every lock is released in a `finally` block
+- [x] `RaceWindow`, `Config`, the verification block and the watchdog are **unchanged**
+- [x] Each feature has clear comments
 
 **Commits**
-- [ ] **At least 4 meaningful commits, ideally 7 or more**
-- [ ] **One commit per feature**
-- [ ] Commits are spread over **different dates** (not all in the last hour)
-- [ ] Everything is **pushed** to GitHub
+- [x] **At least 4 meaningful commits, ideally 7 or more**
+- [x] **One commit per feature**
+- [x] Commits are spread over **different dates** (not all in the last hour)
+- [x] Everything is **pushed** to GitHub
 
 **This file (`MY_WORK.md`)**
-- [ ] Full name and student ID filled in at the top
-- [ ] Development log has **5+ entries** on different dates
-- [ ] Reflection: 4 questions, 5-7 sentences each
-- [ ] Technical answers: 4 questions, 3-5 sentences each, with examples from **your** output (starter output **and** final output pasted in Question 1)
-- [ ] No `[...]` placeholders left
-- [ ] No section headers deleted
+- [x] Full name and student ID filled in at the top
+- [x] Development log has **5+ entries** on different dates
+- [x] Reflection: 4 questions, 5-7 sentences each
+- [x] Technical answers: 4 questions, 3-5 sentences each, with examples from **your** output (starter output **and** final output pasted in Question 1)
+- [x] No `[...]` placeholders left
+- [x] No section headers deleted
 
 **Video**
-- [ ] 2-3 minutes long, named `StudentID_Assignment3_Demo.mp4`
-- [ ] Shows your name, ID, repository, 3 features (and your lock granularity choice), IDE execution with the verification block, one synchronization concept, and commit history
+- [x] 2-3 minutes long, named `StudentID_Assignment3_Demo.mp4`
+- [x] Shows your name, ID, repository, 3 features (and your lock granularity choice), IDE execution with the verification block, one synchronization concept, and commit history
 - [ ] Link is **public** (tested in an incognito window) and pasted in the **Video Link** section above
 
 **Blackboard**
