@@ -42,7 +42,7 @@
 
 ## 🎥 Video Link
 
-**Video Link**: [Paste your video link here]
+**Video Link**: https://drive.google.com/file/d/16xfgDmh2j4y-9BA2pAm6s19-YO6xa24S/view?usp=drivesdk
 
 > ⚠️ **WARNING:** The video must be **publicly accessible** ("Anyone with the link can view") on **Google Drive**, **YouTube (Unlisted or Public)** or any other cloud file-sharing system. A private, restricted or broken link counts as a **missing video (-1 mark)**.
 >
@@ -213,16 +213,16 @@ There may be a chance that my program behave correctly in a run and then behave 
 
 ---
 
-### Entry 6 - [Optional - Date and Time]
-**What I did**:
+### Entry 6 - [November 12, 2026, 12:20 AM]
+**What I did**:Recorded and uploaded the video.
 
-**Details**:
+**Details**: Recorded the demo video and uploaded it to google drive, Then added the link to MY_WORK,md,
 
-**Challenges**:
+**Challenges**:There is no challenge 
 
-**Solution**:
+**Solution**:Not Applicable 
 
-**Time spent**:
+**Time spent**: 20 minutes
 
 ---
 
@@ -230,7 +230,7 @@ There may be a chance that my program behave correctly in a run and then behave 
 
 > 💡 **TIP:** Fill this in **last**, after all entries are written.
 
-**Total time spent on assignment**: 4  hours
+**Total time spent on assignment**: 4  hours and 10 minutes
 
 **Most challenging part**:
 The last CPU wake-up when the program is finishing.
